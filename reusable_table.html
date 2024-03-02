@@ -1,0 +1,107 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const Table=(props)=>{
+    const {title,data,headers,columns}=props;
+    return <div>
+        <h3>{title}</h3>
+        <table border="2px">
+            <thead>
+                <tr>
+                    {
+                        headers.map((val,ind)=>{
+                            return <th key={`${ind}`}>{val}</th>
+                        })
+                    }
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        data.map((obj,ind)=>{
+                            return <tr>
+                                {
+                                    columns.map((val,ind)=>{
+                                        return <td key={`${val}`}>{obj[val]}</td>
+                                    })
+                                }
+                                </tr>
+                        })
+                    }
+                    </tbody>
+            </table>
+        </div>
+
+}
+const App=()=>{
+    const players=[
+        {
+            name: "Sachin",
+            runs: 20000,
+            loc: "Mumbai"
+        },
+        {
+            name: "Dhoni",
+            runs: 10000,
+            loc: "Ranchi"
+        },
+        {
+            name: "Kohli",
+            runs: 15000,
+            loc: "Delhi"
+        },
+        {
+            name: "Yuvi",
+            runs: 9000,
+            loc: "Punjab" 
+        },
+        {
+            name: "Rohit",
+            runs : 8500,
+            loc: "Mumbai"
+        },
+        {
+            name: "Dhawan",
+            runs: 7000,
+            loc: "Delhi"
+        }
+
+    ]
+    const students=[
+    {
+        name : "Suraj",
+        marks : 93
+    },
+    {
+        name : "Sameer",
+        marks : 87
+    },
+    {
+        name : "Happy",
+        marks : 78
+    },
+    {
+        name : "Ronit",
+        marks : 92
+    },
+    {
+        name : "Ansh",
+        marks : 91
+    },
+    {
+        name : "Samar",
+        marks : 88
+    }
+]        
+    
+  return <div>
+   <Table title={"players"} data={players} headers={["Name","Runs","Loc"]} columns={["name","runs","loc"]} />
+   <Table title={"Students"} data={students} headers={["Name","Marks"]} columns={["name","marks"]} />
+    </div>
+}
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />)
+</script>
